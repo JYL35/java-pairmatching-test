@@ -1,17 +1,27 @@
 package pairmatching.domain;
 
-import pairmatching.constant.ErrorMessage;
 
-public enum Course {
-    백엔드,
-    프론트엔드;
+import java.util.List;
+import pairmatching.repository.LevelRepository;
 
-    public static Course findCourse(String input) {
-        for (Course course : Course.values()) {
-            if (course.name().equals(input)) {
-                return course;
-            }
-        }
-        throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_COURSE.getMessage());
+public class Course {
+    private final String name;
+    private final LevelRepository levelRepository;
+
+    public Course(String name, LevelRepository levelRepository) {
+        this.name = name;
+        this.levelRepository = levelRepository;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Level> getLevels() {
+        return levelRepository.levels();
+    }
+
+    public Level findLevel(String name) {
+        return levelRepository.findByName(name);
     }
 }

@@ -1,23 +1,35 @@
 package pairmatching.domain;
 
-import pairmatching.constant.ErrorMessage;
 
-public enum Mission {
-    자동차경주,
-    로또,
-    숫자야구게임,
-    장바구니,
-    결제,
-    지하철노선도,
-    성능개선,
-    배포;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
-    public static Mission findMission(String input) {
-        for (Mission mission : Mission.values()) {
-            if (mission.name().equals(input)) {
-                return mission;
-            }
+public class Mission {
+    private final String name;
+    private List<List<String>> pairMatching;
+
+    public Mission(String name) {
+        this.name = name;
+        pairMatching = new ArrayList<>();
+    }
+
+    public boolean checkMatching() {
+        if (pairMatching.isEmpty()) {
+            return false;
         }
-        throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_MISSION.getMessage());
+        return true;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<List<String>> getPairMatching() {
+        return List.copyOf(pairMatching);
+    }
+
+    public void setPairMatching(List<List<String>> pairMatching) {
+        this.pairMatching = pairMatching;
     }
 }

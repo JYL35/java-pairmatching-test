@@ -1,20 +1,26 @@
 package pairmatching.domain;
 
-import pairmatching.constant.ErrorMessage;
+import java.util.List;
+import pairmatching.repository.MissionRepository;
 
-public enum Level {
-    레벨1,
-    레벨2,
-    레벨3,
-    레벨4,
-    레벨5;
+public class Level {
+    private final String name;
+    private final MissionRepository missionRepository;
 
-    public static Level findLevel(String input) {
-        for (Level level : Level.values()) {
-            if (level.name().equals(input)) {
-                return level;
-            }
-        }
-        throw new IllegalArgumentException(ErrorMessage.NOT_FOUND_LEVEL.getMessage());
+    public Level(String name, MissionRepository missionRepository) {
+        this.name = name;
+        this.missionRepository = missionRepository;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Mission> getMissions() {
+        return missionRepository.missions();
+    }
+
+    public Mission findMission(String name) {
+        return missionRepository.findByName(name);
     }
 }
