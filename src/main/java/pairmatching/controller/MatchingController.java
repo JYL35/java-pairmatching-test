@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import java.util.List;
+import pairmatching.util.Parser;
 import pairmatching.util.Validator;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
@@ -22,7 +23,7 @@ public class MatchingController {
                 Validator.validateOption(List.of("1", "2", "3", "Q"), funcOption);
                 if (funcOption.equals("Q")) break;
 
-                // 1번 -> 페어 매칭
+                if (funcOption.equals("1")) pairMatch();
                 // 2번 -> 페어 조회
                 // 3번 -> 초기화
 
@@ -30,5 +31,10 @@ public class MatchingController {
                 outputView.printError(e);
             }
         }
+    }
+
+    private void pairMatch() {
+        String courseAndLevelAndMission = inputView.readCourseLevelMission();
+        String[] options = Parser.optionParse(courseAndLevelAndMission);
     }
 }

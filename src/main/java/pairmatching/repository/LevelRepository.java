@@ -30,6 +30,6 @@ public class LevelRepository {
         return levels.stream()
                 .filter(level -> Objects.equals(level.getName(), name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_FOUND_MISSION.getMessage()));
+                .orElseThrow(() -> new IllegalArgumentException(ErrorMessage.NOT_FOUND_LEVEL.getMessage()));
     }
 }
