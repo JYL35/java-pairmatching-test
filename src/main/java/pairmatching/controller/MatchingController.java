@@ -1,6 +1,7 @@
 package pairmatching.controller;
 
 import java.util.List;
+import pairmatching.init.ProgramInitializer;
 import pairmatching.repository.CourseRepository;
 import pairmatching.service.MatchingService;
 import pairmatching.util.Parser;
@@ -27,12 +28,9 @@ public class MatchingController {
                 String funcOption = inputView.readFuncOption();
                 Validator.validateOption(List.of("1", "2", "3", "Q"), funcOption);
                 if (funcOption.equals("Q")) break;
-
-                // 3번 -> 초기화
-
                 if (funcOption.equals("1")) func1();
                 if (funcOption.equals("2")) func2();
-
+                if (funcOption.equals("3")) func3();
             } catch (RuntimeException e) {
                 outputView.printError(e);
             }
@@ -82,5 +80,10 @@ public class MatchingController {
         String mission = options[2];
 
         outputView.printRoster(CourseRepository.getPairMatching(course, level, mission));
+    }
+
+    private void func3() {
+        ProgramInitializer.deleteAll();
+        ProgramInitializer.initialize();
     }
 }

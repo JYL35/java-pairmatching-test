@@ -20,6 +20,10 @@ public class ProgramInitializer {
         }
     }
 
+    public static void deleteAll() {
+        CourseRepository.deleteAll();
+    }
+
     private static Course initCourse(String name) {
         LevelRepository levelRepository = new LevelRepository();
 
