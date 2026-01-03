@@ -10,6 +10,16 @@ public class Validator {
         validateContains(options, input);
     }
 
+    public static void validateOptions(String[] options) {
+        if (options.length != 3) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.getMessage());
+        }
+
+        for (String option : options) {
+            validateEmpty(option);
+        }
+    }
+
     private static void validateEmpty(String input) {
         if (input == null || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.IS_EMPTY.getMessage());

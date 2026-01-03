@@ -18,6 +18,12 @@ public class OutputView {
         System.out.println(OPTION_GUIDE);
     }
 
+    public void printDeleteAll() {
+        printNewLine();
+        System.out.println("초기화 되었습니다.");
+        printNewLine();
+    }
+
     public void printRoster(List<List<String>> pairRoster) {
         printNewLine();
         System.out.println("페어 매칭 결과입니다.");
