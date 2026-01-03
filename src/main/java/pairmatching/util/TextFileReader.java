@@ -11,7 +11,10 @@ public class TextFileReader {
     private static final String PATH = "D:\\workplace\\woowacourse\\final coding test\\"
             + "practice\\java-pairmatching-test\\src\\main\\resources\\";
 
-    public static List<String> readFile(String fileName) {
+    public static List<String> readFile(String input) {
+        String fileName = "frontend-crew.md";
+        if (input.equals("백엔드")) fileName = "backend-crew.md";
+
         File file = new File(PATH + fileName);
 
         if (!file.isFile() || !file.canRead()) {
