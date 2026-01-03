@@ -28,6 +28,7 @@ public class OutputView {
     }
 
     public void printError(RuntimeException e) {
+        printNewLine();
         System.out.println(e.getMessage());
         printNewLine();
     }

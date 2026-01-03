@@ -3,7 +3,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import pairmatching.constant.ErrorMessage;
 
 public class Mission {
     private final String name;
@@ -26,7 +26,10 @@ public class Mission {
     }
 
     public List<List<String>> getPairMatching() {
-        return List.copyOf(pairMatching);
+        if (checkMatching()) {
+            return List.copyOf(pairMatching);
+        }
+        throw new IllegalArgumentException(ErrorMessage.NOU_FOUND_PAIR_MATCHING.getMessage());
     }
 
     public void setPairMatching(List<List<String>> pairMatching) {

@@ -30,10 +30,8 @@ public class MatchingController {
 
                 // 3번 -> 초기화
 
-
-
                 if (funcOption.equals("1")) func1();
-                // 2번 -> 페어 조회
+                if (funcOption.equals("2")) func2();
 
             } catch (RuntimeException e) {
                 outputView.printError(e);
@@ -71,5 +69,18 @@ public class MatchingController {
         List<List<String>> pairRoster = matchingService.createPairRoster(file);
         CourseRepository.setPairMatching(course, level, mission, pairRoster);
         outputView.printRoster(pairRoster);
+    }
+
+    private void func2() {
+        outputView.printOptionGuide();
+
+        String courseAndLevelAndMission = inputView.readCourseLevelMission();
+        String[] options = Parser.optionParse(courseAndLevelAndMission);
+
+        String course = options[0];
+        String level = options[1];
+        String mission = options[2];
+
+        outputView.printRoster(CourseRepository.getPairMatching(course, level, mission));
     }
 }
